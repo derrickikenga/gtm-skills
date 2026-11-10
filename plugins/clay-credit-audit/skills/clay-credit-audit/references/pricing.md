@@ -62,6 +62,7 @@ A 15-row table on the Free plan. Full record: `../examples/live-test-2026-11-10.
 - **Read real spend in Settings > Usage.** The Integrations tab shows credits and Actions per integration; the Workbooks tab shows them per table. Use these numbers in the plan file, not panel estimates. The page shows whole credits, so 7.5 shows as 8.
 - **Reuse saved data from Audiences (Beta).** Enrichment columns have an option to reuse data saved in the last 30 days. Clay says it can save credits. It is off by default.
 - On the Free plan, AI columns on cheap models spend Actions (500 a month) faster than Data Credits.
+- **A stricter prompt fixes accuracy, not cost (2026-11-11).** The same AI fit check, with a prompt that defines the fit and says "No if unsure", answered Yes to 6 of 15 (the 5 real fits and one judgment call), against 10 for the loose prompt. It cost 2 credits and 15 Actions. A formula found the same 5 for 0. Use AI for fit only when no field in the table can decide it.
 
 ## Rollover and top-ups [C]
 
