@@ -1,0 +1,26 @@
+{
+  "_note": "Example plan. Provider names are generic and the costs are sample values, not Clay prices. Read real costs from the Clay enrichment panel.",
+  "table": "Outbound accounts (example)",
+  "plan": "launch",
+  "rows_per_month": 1500,
+  "auto_run": true,
+  "rerun_rate": 0.2,
+  "crm_overlap": 0.15,
+  "lookup_used": false,
+  "fit_pass_rate": 0.4,
+  "columns": [
+    { "id": "company", "name": "Company profile", "kind": "enrichment", "category": "company", "credits": 0.5, "hit_rate": 0.95, "refund_on_miss": true, "feeds_fit": true },
+    { "id": "email", "name": "Work email", "kind": "waterfall", "category": "email", "refund_on_miss": true, "steps": [
+      { "provider": "Provider A", "credits": 3, "hit_rate": 0.55 },
+      { "provider": "Provider B", "credits": 1, "hit_rate": 0.45 },
+      { "provider": "Provider C", "credits": 2, "hit_rate": 0.35 }
+    ] },
+    { "id": "verify", "name": "Verify email", "kind": "verify", "credits": 0.5, "hit_rate": 1 },
+    { "id": "phone", "name": "Mobile phone", "kind": "enrichment", "category": "phone", "credits": 10, "hit_rate": 0.3, "refund_on_miss": true },
+    { "id": "phone2", "name": "Mobile phone (backup)", "kind": "enrichment", "category": "phone", "credits": 8, "hit_rate": 0.25, "refund_on_miss": true },
+    { "id": "first", "name": "Clean first name", "kind": "ai", "task": "first_name", "credits": 0.5 },
+    { "id": "fit", "name": "ICP fit", "kind": "ai", "role": "fit", "task": "classify", "credits": 3 },
+    { "id": "angle", "name": "Research angle", "kind": "ai", "task": "research", "credits": 2 },
+    { "id": "crm", "name": "Send to CRM", "kind": "export" }
+  ]
+}

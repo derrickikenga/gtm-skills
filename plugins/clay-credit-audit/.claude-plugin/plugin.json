@@ -1,0 +1,8 @@
+{
+  "name": "clay-credit-audit",
+  "version": "0.1.0",
+  "description": "Find the Data Credits and Actions a Clay table wastes, and price each fix.",
+  "author": { "name": "Derrick Ikenga", "url": "https://derrickikenga.com" },
+  "license": "MIT",
+  "keywords": ["clay", "gtm", "enrichment", "credits", "revops"]
+}
