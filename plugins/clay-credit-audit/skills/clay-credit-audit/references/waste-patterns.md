@@ -6,6 +6,7 @@ The script prices the first group. Check the second group by hand and add what a
 
 | Rule | What is wrong | Fix in Clay |
 |---|---|---|
+| `ai-fit-to-formula` | An AI column decides fit from fields already in the table | Use a formula. Check 20 AI answers against the source first |
 | `no-fit-gate` | Paid columns run on rows that do not match the ICP | Put a fit check first. Add "only run if fit = true" to each paid column |
 | `waterfall-order` | An expensive provider runs first | Put the cheapest cost per hit first |
 | `auto-run` | Edits and refreshes run paid columns again | Turn off auto-run, or add "only run if this column is empty" |
@@ -18,6 +19,9 @@ The script prices the first group. Check the second group by hand and add what a
 
 ## Check by hand
 
+- **AI fit that says Yes too often.** In the 2026-11-10 live test, a cheap AI fit check said Yes to 10 of 15 companies; the descriptions support 5. Each false Yes is a paid row downstream.
+- **Keep existing results off.** Older tables can have auto-run without this option. Turn it on.
+- **Reuse saved data off.** If the same companies or people go through more than one table in 30 days, turn on "Reuse saved data from Audiences".
 - **Phone on every fit row.** Phones cost the most. Limit them to the top tier of accounts, or to rows after a reply.
 - **Full run before a test.** Did the user run a new column on the whole table? Next time, 20 rows first.
 - **Claygent for structured data.** If a provider returns the same field, it is cheaper and more consistent than an AI web search.

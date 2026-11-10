@@ -40,15 +40,18 @@ You can also run the calculator yourself:
 node plugins/clay-credit-audit/skills/clay-credit-audit/scripts/audit.mjs plan.json
 ```
 
-Result for the example table in `examples/outbound-table.json` (sample costs, not Clay prices):
+Live test on a real Clay table (15 companies, Free plan, 2026-11-10). The numbers are what Clay charged:
 
-| | Data Credits / month | Actions / month |
+| | Data Credits | Actions |
 |---|---:|---:|
-| Now | 24,301 | 12,910 |
-| After fixes | 5,489 | 5,676 |
+| Table A: AI fit check, then enrich every row | 9 | 30 |
+| Table B: formula fit check, then enrich only rows that fit | 2 | 5 |
+
+The calculator gave the same numbers before the run. The record is in `examples/live-test-2026-11-10.json`.
 
 The audit finds these problems:
 
+- An AI fit check where a formula can decide.
 - Paid columns that run on rows that do not match the ICP.
 - Waterfalls with an expensive provider first.
 - Auto-run that enriches the same rows again.

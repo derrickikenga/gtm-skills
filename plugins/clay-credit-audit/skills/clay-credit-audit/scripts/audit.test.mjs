@@ -57,3 +57,14 @@ test('fit gate skips columns that feed the fit check', () => {
 test('bad input fails with a clear message', () => {
   assert.throws(() => estimate({ columns: [] }), /rows_per_month/);
 });
+
+test('live test 2026-11-10: calculator matches what Clay charged', async () => {
+  const { readFileSync } = await import('node:fs');
+  const plan = JSON.parse(readFileSync(new URL('../examples/live-test-2026-11-10.json', import.meta.url)));
+  const r = audit(plan);
+  assert.equal(Math.round(r.before.credits), plan._measured.table_a.credits);
+  assert.equal(Math.round(r.before.actions), plan._measured.table_a.actions);
+  assert.equal(Math.round(r.after.actions), plan._measured.table_b.actions);
+  assert.ok(Math.abs(r.after.credits - plan._measured.table_b.credits) <= 0.5);
+  assert.ok(r.findings.some((f) => f.rule === 'ai-fit-to-formula'));
+});

@@ -34,7 +34,7 @@ Source: https://university.clay.com/docs/actions-data-credits
 - Marketplace data, unless the data is free or you use your own API key.
 - Clay-managed AI. Per-model costs: https://university.clay.com/docs/ai-pricing. Fixed-price models (for example GPT-5 Mini at 0.4 for content and 1 for research, Gemini 2.5 Flash at 0.5 and 1) cost less than variable models (for example o3 at about 5, Claude 4.6 Opus at about 7.5). Variable runs hold credits at the 75th percentile and refund the rest.
 - Clay's own estimate for a fully enriched record: 6 to 20 Data Credits.
-- The cost of each option shows next to it in the enrichment panel. That panel is the source of truth for a provider price.
+- The cost of each option shows next to it in the enrichment panel. Use the panel for a provider's list price per run. For what a column really cost, read Settings > Usage (see the live test below).
 
 ## Misses and refunds
 
@@ -42,15 +42,26 @@ Source: https://university.clay.com/docs/actions-data-credits
 - The refund doc is narrower: only listed actions (mostly email, phone and company finders) refund on `No data`. `Empty response` never refunds. `Error`, `Timed out` and `Invalid input` refund in most cases. A verifier that returns `invalid` is charged. `[C]` https://university.clay.com/docs/credit-refunds
 - **The audit uses the refund doc.** Set `refund_on_miss: true` only for columns on that list.
 
-## Auto-run [C] and [?]
+## Auto-run [C] and [seen in app]
 
 - Clay's FAQ says automatic refreshes trigger enrichments and tells users to turn auto-run off when not needed.
-- `[?]` Whether each edit to a row fires a charged re-run is not documented. Use the user's run history for `rerun_rate`.
+- Seen in the app on 2026-11-10: auto-run has a **Keep existing results** option. When it is on, cells that already have data do not run again; only errored, empty or new cells run. Clay turns it on for **new** tables. Older tables can still have it off, so ask.
+- `[?]` Whether each edit to a row fires a charged re-run with the option off is not documented. Use the user's run history for `rerun_rate`.
 
 ## Waterfalls [?]
 
 - The audit assumes a waterfall stops at the first provider that returns a value. No Clay page read on 2026-11-10 states it outright. Confirm in the table's run history.
 - The audit treats hit rates as independent. Real providers overlap, so the reorder saving is an estimate.
+
+## What the app showed in a live test [seen in app, 2026-11-10]
+
+A 15-row table on the Free plan. Full record: `../examples/live-test-2026-11-10.json`.
+
+- **The panel estimate is a hold, not the bill.** A Claygent column with the Auto model showed "~1.9 / row" (about 28.5 for 15 rows). Clay charged 1 credit for all 15. It still charged 15 Actions.
+- **The estimate ignores run conditions.** An enrichment limited to 5 rows still showed "~7.5 total" for 15. Clay charged for 5.
+- **Read real spend in Settings > Usage.** The Integrations tab shows credits and Actions per integration; the Workbooks tab shows them per table. Use these numbers in the plan file, not panel estimates. The page shows whole credits, so 7.5 shows as 8.
+- **Reuse saved data from Audiences (Beta).** Enrichment columns have an option to reuse data saved in the last 30 days. Clay says it can save credits. It is off by default.
+- On the Free plan, AI columns on cheap models spend Actions (500 a month) faster than Data Credits.
 
 ## Rollover and top-ups [C]
 

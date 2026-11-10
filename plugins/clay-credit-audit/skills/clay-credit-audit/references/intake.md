@@ -8,7 +8,7 @@ Ask for:
 
 1. The full table view, scrolled so every column header shows.
 2. The settings panel of each paid column (enrichment, waterfall, AI). The panel shows the provider, the cost per run and the "only run if" condition.
-3. Settings, then Usage, for the last 30 days. This gives the real monthly spend and the columns that spend most.
+3. Settings, then Usage, for the last 30 days: the **Integrations** tab (credits and Actions per provider) and the **Workbooks** tab (per table). These are what Clay charged. The cost in the enrichment panel is an estimate and can be far off: in one test it showed about 28.5 credits for a column that cost 1.
 
 ## Option 2: the user describes it
 

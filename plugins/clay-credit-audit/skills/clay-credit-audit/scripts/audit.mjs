@@ -148,7 +148,7 @@ const RULES = [
       rule: 'no-fit-gate',
       columns: open.map((c) => c.id),
       title: 'Enrich only the rows that fit',
-      detail: `${round((1 - rate) * 100, 0)}% of rows fail the fit check, and ${names} still run on them.${late ? ' Move the fit column before them.' : ''}${fit?.kind === 'ai' ? ' If headcount, industry and country decide fit, a formula does the check for free.' : ''}`,
+      detail: `${round((1 - rate) * 100, 0)}% of rows fail the fit check, and ${names} still ${open.length > 1 ? 'run' : 'runs'} on them.${late ? ' Move the fit column before them.' : ''}${fit?.kind === 'ai' ? ' If headcount, industry and country decide fit, a formula does the check for free.' : ''}`,
       fix: (p) => {
         for (const c of p.columns) {
           if (!open.some((o) => o.id === c.id)) continue;
@@ -169,6 +169,25 @@ const RULES = [
         p.rerun_rate = 0;
       },
     }];
+  },
+
+  function aiFitToFormula(plan) {
+    // Seen live on 2026-11-10: an AI fit check on 15 rows cost 1 credit but
+    // 15 Actions, and said Yes to 10 rows where the descriptions support 5.
+    // When fields already in the table decide fit, a formula is free and stable.
+    return plan.columns
+      .filter((c) => c.role === 'fit' && c.kind === 'ai' && c.formula_can_decide)
+      .map((col) => ({
+        rule: 'ai-fit-to-formula',
+        column: col.id,
+        title: `Decide fit with a formula, not AI ("${col.name ?? col.id}")`,
+        detail: 'The fields that decide fit are already in the table. A formula costs 0 Actions and 0 Data Credits and gives the same answer every run. Check 20 rows of the AI answers against the source fields first: a cheap model can say Yes too often, and every false Yes reaches the paid columns.',
+        fix: (p) => {
+          const c = p.columns.find((x) => x.id === col.id);
+          c.kind = 'formula';
+          delete c.credits;
+        },
+      }));
   },
 
   function aiForFormula(plan) {
@@ -357,7 +376,8 @@ export function report(r) {
   L.push('');
   if (!r.findings.length) L.push('No waste found in this plan.');
   r.findings.forEach((f, i) => {
-    const s = f.saving ? ` (saves ${fmt(f.saving.credits)} credits, ${fmt(f.saving.actions)} actions a month)` : ' (not priced)';
+    const plural = (n, w) => `${fmt(n)} ${w}${Math.round(n) === 1 ? '' : 's'}`;
+    const s = f.saving ? ` (saves ${plural(f.saving.credits, 'credit')}, ${plural(f.saving.actions, 'action')} a month)` : ' (not priced)';
     L.push(`${i + 1}. **${f.title}**${s}`);
     L.push(`   ${f.detail}`);
   });

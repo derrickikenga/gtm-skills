@@ -1,0 +1,20 @@
+{
+  "_note": "A real table, built and run on a Clay Free workspace on 2026-11-10. 15 US software companies (11-50 staff) from Clay's free company search. Fit = sells HR, hiring or recruiting products. Costs are the amounts Clay charged (Settings > Usage > Integrations), not panel estimates.",
+  "table": "Live test: HR software fit (Table A)",
+  "plan": "free",
+  "rows_per_month": 15,
+  "auto_run": false,
+  "fit_pass_rate": 0.3333,
+  "columns": [
+    { "id": "fit", "name": "HR/Recruit (Claygent, Auto model)", "kind": "ai", "role": "fit", "task": "classify", "credits": 0.0667, "formula_can_decide": true },
+    { "id": "company", "name": "Enrich company", "kind": "enrichment", "category": "company", "credits": 0.5, "hit_rate": 1 }
+  ],
+  "_measured": {
+    "table_a": { "credits": 9, "actions": 30, "ai_fit": { "credits": 1, "actions": 15 }, "enrich_company": { "credits": 8, "actions": 15 } },
+    "table_b": { "credits": 2, "actions": 5, "fit_formula": { "credits": 0, "actions": 0 }, "enrich_company_fit_rows_only": { "credits": 2, "actions": 5 } },
+    "panel_estimates": { "ai_fit": "~1.9 credits per row, ~28.5 total", "enrich_company": "0.5 per row; the estimate did not drop when a run condition was added" },
+    "ai_fit_said_yes": 10,
+    "formula_said_yes": 5,
+    "rounding": "Clay's usage page shows whole credits, so 7.5 shows as 8 and 2.5 as 2"
+  }
+}
