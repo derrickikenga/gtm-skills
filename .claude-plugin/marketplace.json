@@ -1,11 +1,19 @@
 {
   "name": "gtm-skills",
-  "owner": { "name": "Derrick Ikenga", "url": "https://derrickikenga.com" },
+  "owner": {
+    "name": "Derrick Ikenga",
+    "url": "https://derrickikenga.com"
+  },
   "plugins": [
     {
       "name": "clay-credit-audit",
       "source": "./plugins/clay-credit-audit",
       "description": "Find the Data Credits and Actions a Clay table wastes, and price each fix."
+    },
+    {
+      "name": "agent-audit",
+      "source": "./plugins/agent-audit",
+      "description": "Find the rows a GTM agent got wrong, then decide per step: keep the agent, replace it with a rule, or put a person in front of it."
     }
   ]
 }

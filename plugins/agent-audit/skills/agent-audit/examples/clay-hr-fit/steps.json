@@ -1,0 +1,28 @@
+{
+  "_note": "A real Clay test, 2026-11-10 and 2026-11-11. The Yes/No answers are what Clay's AI column (Claygent, Auto model) returned for each company domain. The descriptions are short paraphrases written for this example, so the repo does not copy Clay's data. The question: does the company sell HR, hiring or recruiting software or services?",
+  "id_column": "company",
+  "steps": [
+    {
+      "column": "fit_ai",
+      "kind": "classify",
+      "instruction": "Does the company at {{Domain}} sell HR, hiring or recruiting software or services? Answer only Yes or No.",
+      "inputs": ["description"],
+      "allowed": ["Yes", "No"],
+      "positive": "Yes",
+      "rules": [
+        { "name": "keyword formula", "regex": "/(recruit|hiring|talent acquisition|applicant|\\bHR\\b)/i" }
+      ]
+    },
+    {
+      "column": "fit_ai_strict",
+      "kind": "classify",
+      "instruction": "Same question, stricter: Yes only if the main product is sold to employers to recruit, hire or manage staff. No if unsure.",
+      "inputs": ["description"],
+      "allowed": ["Yes", "No"],
+      "positive": "Yes",
+      "rules": [
+        { "name": "keyword formula", "regex": "/(recruit|hiring|talent acquisition|applicant|\\bHR\\b)/i" }
+      ]
+    }
+  ]
+}

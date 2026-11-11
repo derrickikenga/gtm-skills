@@ -1,0 +1,9 @@
+id,company,first_name,signal,draft_email
+1,Northwind Logistics,Ana,Hiring 4 SDRs this month,"Hi Ana, saw Northwind Logistics is hiring 4 SDRs. When a team grows that fast, inbound leads usually wait longer for a reply. Is speed to lead something you're looking at this quarter?"
+2,Bluepeak Health,Marcus,New VP of Sales started in October,"Hi Marcus, congrats on the new VP of Sales at Bluepeak Health. New sales leaders often rebuild routing in the first 90 days. Is lead routing on the list?"
+3,Larkspur Analytics,Priya,Raised a Series A,"Hi {{first_name}}, congrats on the Series A at Larkspur Analytics. Teams at this stage often outgrow manual lead research. Worth a look?"
+4,Fernhill Software,Tom,Hiring a RevOps manager,"Hi Tom, I hope this email finds you well. Saw Fernhill Software is hiring a RevOps manager. Happy to share how other teams set up routing before that hire starts."
+5,Quarry Labs,Dana,Hiring 2 AEs,"Hi Dana, saw Quarry Labs is hiring 2 AEs. Teams like yours cut reply time by 63% with an inbound agent. Want the setup?"
+6,Ridgeway CRM,Sam,Launched a new pricing page,"Hi Sam, saw the new pricing page. New pricing usually brings a wave of comparison shoppers into the demo queue. Are those leads routed differently?"
+7,Oakline Data,Lena,New VP of Sales started in October,"Hi Lena, congrats on the new VP of Sales at Oakline Data. New sales leaders often rebuild routing in the first 90 days. Is lead routing on the list?"
+8,Saltmarsh AI,Jo,Hiring 3 SDRs,"Hi Jo, saw Saltmarsh AI is hiring 3 SDRs. When a team grows that fast, inbound leads usually wait longer for a reply. Is speed to lead something you're looking at this quarter?"

@@ -1,0 +1,16 @@
+{
+  "_note": "Made-up sample data. Eight first-touch emails an outbound agent drafted from one signal per company. Some rows carry planted mistakes so every draft check fires.",
+  "id_column": "id",
+  "steps": [
+    {
+      "column": "draft_email",
+      "kind": "draft",
+      "instruction": "Write a first-touch email under 60 words from the signal. Name the company. No links.",
+      "inputs": ["company", "first_name", "signal"],
+      "must_mention": "company",
+      "max_words": 60,
+      "allowed_numbers": ["90"],
+      "writes": "external"
+    }
+  ]
+}
